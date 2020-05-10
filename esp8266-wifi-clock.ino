@@ -2,6 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <LiquidCrystal.h>
+#include <HTTPClient.h>
 
 // Set up LiquidCrystal library with  LCD1602 pins
 // Pinout from LCD1602 is (RS, E, D4, D5, D6, D7)
@@ -9,6 +10,12 @@ LiquidCrystal lcd(12, 14, 2, 0, 4, 5);
 
 const char *ssid     = "ENTER_SSID_HERE";
 const char *password = "ENTER_PASS_HERE";
+
+// Configuring DarkSky API (Add your API key and coordinates below)
+const String apiKey = "<INSERT API KEY HERE>/"
+const String lat = "<INSERT LATITUDE HERE>,"
+const String lon = "<INSERT LONGITUDE HERE>"
+const String url = "https://api.darksky.net/forecast/"
 
 // This offset is for UTC-7
 const long utcOffsetInSeconds = -25200;
@@ -48,7 +55,7 @@ void setup(){
     lcd.setCursor(15, 1);
     lcd.print("/");
     delay(200);
-  }
+      }
   lcd.clear();
   lcd.print("Wi-Fi Connected!");
   lcd.setCursor(0,1);
